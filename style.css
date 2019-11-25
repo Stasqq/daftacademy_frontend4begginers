@@ -1,0 +1,428 @@
+/*
+Przeglądarki internetowe nadają znacznikom HTML wartości początkowe,
+które się różnią w zależności od producenta (np. Chrome, Firefox, Opera, Internet Explorer, Microsoft Edge).
+Dlatego popularną praktyką jest tworzenie tzw. resetów,
+czyli plików CSS zawierających reguły, które nadpisują te wartości,
+aby były one jednolite niezalenie od przeglądarki.
+
+Więcej na ten temat: https://cssreset.com/what-is-a-css-reset/
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ZAGADNIENIE PONADPROGRAMOWE
+
+Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
+że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
+
+Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
+*/
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/*
+Sekcja pomocnicza, aby zwizualizować pozycje głównych bloków strony. Będzie usunięta w następnych krokach.
+*/
+/* .page-header {
+    background-color: #ffb1b1;
+} */
+
+/* .page-content {
+    background-color: #b0ffb0;
+} */
+
+/* .page-footer {
+    background-color: #7ba3ff;
+} */
+
+/* .content-section {
+    background-color: #ca9aca;
+}  */
+
+/*
+Koniec sekcji pomocniczej
+*/
+
+/*
+Ustawiając sekcje nagłówka i stopki w pozycji 'fixed' sprawiamy,
+że niezależnie od pozycji paska przewijania elementy te będą znajdowały się
+w tej samej pozycji względem okna przeglądarki.
+Natomiast pozycję tę ustawiamy za pomocą parametrów 'top', 'bottom', 'right', 'left'.
+*/
+.page-header {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+
+.page-footer {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+}
+
+/*
+Lewy margines ustawiony na kontenerze z główną zawartością strony sprawia,
+że nie będzie ona nachodzić na nagłówek i stopkę niezależnie od pozycji paska przewijania.
+Na projekcie graficznym sekcja menu ma szerokość około 170px i jest oddalona od krawędzi ekranu
+o 50px, więc można założyć, że 220px marginesu będzie wartością stosunkowo bezpieczną.
+Z kolei spady (padding) nadane na kontener wyznaczają minimalną odległość, na jaką będzie oddalona
+treść strony od otaczających ją granic kontenera (wartość "0 10%" jest
+skrótem od padding-top: 0, padding-bottom: 0, padding-left: 10%, padding-right: 10%).
+Właściwość "text-align: right" przykleja zawartość do prawej strony
+(oddziałuje na elementy, które są elementami inline'owymi, np. tekst, znaczniki <a>, <span> czy elementy z nadanym stylem "display: inline-block").
+*/
+.page-content {
+    margin-left: 220px;
+    padding: 0 10%;
+    text-align: right;
+
+}
+
+/*
+Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą wysokość okna przeglądarki
+lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
+będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
+która wymusza wysokość elementu na zadaną wartość lub wyższą.
+*/
+.content-section {
+    min-height: 100vh;
+}
+
+/*praca domowa nr 1*/
+
+body{
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url(./images/background.svg);
+    background-color: #25072E;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: reg;
+    letter-spacing: 1.5px;
+    color: #DBD8FB;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.page-navigation__item a{
+    text-decoration: none;
+    color: #EC008C;
+    font-size: 13px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    letter-spacing: 6.7px;
+    text-transform: uppercase;
+}
+
+h2{
+    margin-top: 10vh;
+    margin-bottom: 5vh;
+    font-size: 28px;
+    font-family: "Open Sans";
+    text-transform: uppercase;
+    font-weight: bold;
+    float: right;
+    letter-spacing: 4.5px;
+    color: #EC008C;
+}
+
+h3{
+    
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    letter-spacing: 3.8px;
+    color: #DBD8FB;
+}
+
+.band-members{
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+
+.about-section__desc{
+    padding: 25px;
+    position: relative;
+    right: 65%;
+    bottom: 32vh;
+    background-color: #25072E;
+    width: 45%;
+    height: 50%;
+    text-align: left;
+    border-bottom: 3px solid #EC008C;
+    text-align: left;
+}
+.band-members__item p{
+    text-align: left;
+    margin-left: 30px;
+}
+
+.band-members__name{
+    font-weight: bold;
+    visibility: hidden;
+}
+
+.band-members__desc{
+    visibility: hidden;
+}
+
+.band-members__image{
+    opacity: 0.6;
+}
+
+.band-members__image:hover{
+    opacity: 1.0;
+}
+
+.band-members__item:hover .band-members__name{
+    visibility: visible;
+}
+
+.band-members__item:hover .band-members__desc{
+    visibility: visible;
+}
+
+
+#about img{
+    border-top: 3px solid #EC008C;
+    width:75%;
+}
+
+.gallery{
+    display: grid;
+    grid-template: repeat(3, 150px) / repeat(3, 250px)
+}
+
+#photos{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#photos h2{
+    margin-right: 10px;
+}
+
+.gallery__item{
+    margin: 5%;
+}
+
+#photos img{
+    border-top: 3px solid #EC008C;
+    width: 100%;
+    height: 100%;
+}
+
+#photos img:hover{
+    transform: scale(1.1);
+}
+
+#concerts h2{
+    margin-right: 15px;
+}
+.concerts__info p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.concerts{
+    display: grid;
+    grid-template: repeat(2, 270px) / repeat(2, 300px)
+}
+
+.concerts__image{
+    border-bottom: 3px solid #EC008C;
+    width: 100%;
+    height:70%;
+}
+
+.concerts__item{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 2;
+    margin: 10px;
+}
+
+.concerts__date{
+    font-weight: bold;
+}
+
+.concerts__info p{
+    text-align: left;
+}
+
+.concerts__info .button{
+    position: relative;
+    bottom: 5vh;
+}
+
+iframe{
+    border-top: 3px solid #EC008C;
+    width: 121vh;
+    height: 70vh;
+}
+
+#contact .gallery__image{
+    position: relative;
+    right: 50vh;
+    width: 456px;
+}
+
+.form{
+    position: relative;
+    right: 85vh;
+    text-align: left;
+    width: 40vh;
+}
+
+.form__field{
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.button{
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-family: "Open Sans" Semibold;
+    letter-spacing: 1.6px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #CCC8FF;
+    opacity: 0.4;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover{
+    opacity:0.9;
+}
+
+.button:focus{
+    border: solid 1px #DBD8FB;
+    opacity: 1.0;
+}
+
+.button:visited{
+    opacity: 0.5;
+}
+
+.form__field .button{
+    margin-top: 7px;
+    width: 60%;
+    height: 20px;
+}
+.form__input{
+    margin: 5px 0;
+    background-color: #DBD8FB;
+    opacity: 0.1;
+    border: none;
+    border-radius: 3px;
+}
+
+#contact address{
+    position: relative;
+    bottom: 28vh;
+    right: 8vh;
+    text-align: left;
+    font-size: 13px;
+    font-style: normal;
+    font-family: "Open Sans";
+    letter-spacing: 1.5px;
+    color: #DBD8FB;
+
+}
+
+.social-links__item{
+    opacity: 0.7;
+}
+
+.social-links__item:hover{
+    opacity:1.0;
+}
+
+.social-links__item:focus{
+    opacity: 1.0;
+}
+
+.social-links__item:disabled{
+    opacity: 0.4;
+}
+
+.social-links__item:visited{
+    opacity: 0.6;
+}
+
+.page-navigation__item{
+    opacity: 0.7;
+}
+
+.page-navigation__item:hover{
+    opacity:1.0;
+}
+
+.page-navigation__item:focus{
+    opacity: 1.0;
+}
+
+.page-navigation__item:disabled{
+    opacity: 0.4;
+}
+
+.page-navigation__item:visited{
+    opacity: 0.6;
+}
+
+.social-links__item{
+    margin: 5px;
+}
+
+.youtube-logo{
+    content: url(./images/yout.svg);
+}
+
+.fb-logo{
+    content: url(./images/fb.svg);
+}
+.lastFm-logo{
+    content: url(./images/last.svg);
+}
+
+.instagram-logo{
+    content: url(./images/insta.svg);
+}
+
