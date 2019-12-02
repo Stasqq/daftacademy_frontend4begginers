@@ -185,7 +185,7 @@ LINKI DO SOCIAL MEDIA
 */
 
 
-.social-links__item + .social-links__item {
+.social-links__item {
     margin-top: 15px;
 }
 
@@ -448,6 +448,7 @@ SEKCJA "CONTACT"
 
     .band-members__image{
         width: 160px;
+        height: 250px;
     }
 
     .content-section{
@@ -499,8 +500,16 @@ SEKCJA "CONTACT"
     .gallery{
         display: grid;
         width: 100%;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 15px;
+    }
+
+    .gallery__item{
+        grid-column: span 2;
+    }
+
+    .gallery__item:nth-last-child(1){
+        grid-column: 2 / span 2;
     }
 
     .content-section#video{
