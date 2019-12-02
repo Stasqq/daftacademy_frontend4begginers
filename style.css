@@ -503,6 +503,11 @@ SEKCJA "CONTACT"
         gap: 15px;
     }
 
+    .content-section#video{
+        height: 500px;
+        min-height: 50vh;
+    }
+
     .embedded-video {
         width: 100%;
         height: auto;
