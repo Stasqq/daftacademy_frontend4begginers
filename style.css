@@ -427,6 +427,10 @@ SEKCJA "CONTACT"
         text-align: center;
     }
 
+    .page-brand{
+        margin-top:25px;
+    }
+
     .page-content {
         margin-left: 0px;
         padding: 0px;
@@ -437,10 +441,13 @@ SEKCJA "CONTACT"
 
     .band-members {
         margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+
+    .band-members__image{
+        width: 160px;
     }
 
     .content-section{
@@ -474,5 +481,47 @@ SEKCJA "CONTACT"
         background-color: #25072e;
         border-bottom: 3px solid #EF008E;
     }
-    
+
+    .concerts{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .concerts__item{
+        margin-bottom: 20px;
+    }
+
+    .concerts__image{
+        width: 100%;
+    }
+
+    .gallery{
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .embedded-video {
+        width: 100%;
+        height: auto;
+    }
+
+    .contact__address{
+        padding: 20px;
+    }
+
+    .contact__form{
+        padding-top: 15px ;
+    }
+
+    .social-links{
+        margin-top: 50px;
+        display: grid;
+        height: 50px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: center;
+    }
+
 }
