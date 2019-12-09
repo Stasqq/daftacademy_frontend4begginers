@@ -4,6 +4,7 @@ które się różnią w zależności od producenta (np. Chrome, Firefox, Opera, 
 Dlatego popularną praktyką jest tworzenie tzw. resetów,
 czyli plików CSS zawierających reguły, które nadpisują te wartości,
 aby były one jednolite niezalenie od przeglądarki.
+
 Więcej na ten temat: https://cssreset.com/what-is-a-css-reset/
 */
 
@@ -19,6 +20,7 @@ body {
     "background-size: cover" sprawia, że obrazek tła będzie skalowany tak, żeby wypełniać ekran w całości
         niezależnie od proporcji ekranu
     ""
+
     */
     background-image: url('./images/background.svg');
     /*
@@ -41,8 +43,10 @@ ul {
 
 /*
 ZAGADNIENIE PONADPROGRAMOWE
+
 Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
 że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
+
 Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
 */
 .screen-reader-only {
@@ -77,6 +81,10 @@ a {
 PRZYCISKI
 ######################################
 */
+
+.hamburger {
+    visibility: hidden;
+}
 
 .button {
     padding: 7px 15px;
@@ -205,9 +213,11 @@ Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą 
 lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
 będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
 która wymusza wysokość elementu na zadaną wartość lub wyższą.
+
 Następnie sekcje zostają zdefiniowane jako kontener flexbox (display: flex) co pozwala
 na większą kontrolę nad zachowaniem elementów wewnątrz.
 Zakładamy, ze każda sekcja strony ma bazową strukturę w formacie:
+
     <section class="content-section">
         <h2 class="content-section__header">{nagłówek sekcji}</h2>
         <div class="content-section__body">
@@ -271,11 +281,14 @@ SEKCJA "ABOUT"
 Wykorzystuje ona właściwość elementów z "position: absolute", których położenie jest ustalane
 względem najbliższego mu rodzica, który jest pozycjonowany (ma ustawione "position" na inne
 niż "static", czyli "absolute", "relative", "fixed" lub "sticky").
+
 Dlatego gdy na jego rodzica "about" ustawimy "position: relative" (które bez parametrów
 dodatkowych top, left, bottom, right, nic nie zmienia w jego pozycji), to zawarty w nim
 element "about__desc" ustawia się absolutnie względem niego.
+
 Gdy dodamy wartości "left: -290px" i "bottom: -115px", wtedy "about__desc" będzie wystawać
 z lewego dolnego rogu "about" dokładnie o te odległości.
+
 Natomiast aby nie dopuścić do sytuacji, że wystający "about__desc" nachodził
 na sąsiadujące sekcje na stronie, nadajemy "about" marginesy adekwatne do odległości
 podane przy pozycjonowaniu "about_desc".
@@ -380,11 +393,18 @@ SEKCJA "PHOTOS"
 
 .gallery {
     width: 80%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
+.gallery__item {
+    margin-bottom:20px ;
+    flex-grow: 1;
+    width: 33%;
+    height: 1fr;
+  }
+  
 .gallery__image {
     max-width: 100%;
     border-top: 3px solid #EF008E;
@@ -418,10 +438,53 @@ SEKCJA "CONTACT"
 }
 
 @media screen and (max-height:640px) and (max-width:360px){
+    h2{
+        text-align: center;
+    }
     body {
         overflow-x: hidden;
     }
     
+    .hamburger{
+        visibility: visible;
+        position: sticky;
+        background-color: rgba(204, 200, 255, 0);
+        top: 2vh;
+        left: 2vh;
+        height: 40px;
+        width: 40px;
+        border: 0;
+        padding: 0;
+    }
+
+    .hamburger__image{
+        height: 100%;
+        width: 100%;
+    }
+
+    .hamburger__items{
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 40px;
+        width: 93vw;
+    }
+
+    .hamburger__item{
+        width: 100%;
+        height: 15vh;
+        display: block;
+        background-color: rgb(68, 18, 82);
+    }
+
+    .hamburger__link{
+        display: block;
+        text-transform: uppercase;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
     header.page-header{
         position: static;
         text-align: center;
@@ -443,7 +506,6 @@ SEKCJA "CONTACT"
         margin-top: 10px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        
     }
 
     .band-members__image{
@@ -453,40 +515,29 @@ SEKCJA "CONTACT"
 
     .content-section{
         margin: 10px;
-        align-items: flex-end;
+        align-items: center;
     }
 
     .about {
-        position: relative;
+        margin-left: 0;
+        margin-bottom: 0;
+        position: static;
     }
     
     .about__image {
-        width:250px;
-        max-width: 100%;
-        border-top: 3px solid #EF008E;
+        width: 100%;
     }
-    
-    .about__desc-header {
-        margin-bottom: 30px;
-        color: #CCC8FF;
-        font-size: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-    
+
     .about__desc {
         position: static;
-        margin-top: 5px;
-        width: 300px;
-        padding: 30px;
-        background-color: #25072e;
-        border-bottom: 3px solid #EF008E;
+        width: 100%;
+
     }
 
     .concerts{
+        width: 100%;
         display: flex;
         flex-direction: column;
-        width: 100%;
     }
 
     .concerts__item{
@@ -506,20 +557,21 @@ SEKCJA "CONTACT"
 
     .gallery__item{
         grid-column: span 2;
+        width: 100%;
     }
 
     .gallery__item:nth-last-child(1){
         grid-column: 2 / span 2;
     }
 
-    .content-section#video{
+    #video{
         height: 500px;
         min-height: 50vh;
     }
 
     .embedded-video {
         width: 100%;
-        height: auto;
+        height: 50%;
     }
 
     .contact__address{
@@ -531,11 +583,15 @@ SEKCJA "CONTACT"
     }
 
     .social-links{
-        margin-top: 50px;
         display: grid;
         height: 50px;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         justify-items: center;
     }
 
+    .social-links__item{
+        display: flex;
+        flex-direction: column;
+    }
 }
+
